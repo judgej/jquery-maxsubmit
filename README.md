@@ -34,7 +34,7 @@ or replace the standard confirm box with something more ambitious, such as a jqu
 dialog. You can target specific forms with different settings if you wish.
 
 The server limit (1000 in this case) needs to be passed into the script above. This can
-be found with a simple function like this:
+be found with a simple PHP function like this:
 
     /**
      * Get the submission limit.
@@ -66,3 +66,7 @@ That runs on the server and provides the server settings to insert into the Java
 initialisation, and will return 1000 by default on most PHP servers.
 
 A simnple demo (index.php in this project) is running here: [http://www.acadweb.co.uk/maxsubmit/]
+
+The jQuery plugin and the PHP function are the two building blocks. I intend to wrap them into a
+simple WordPress plugin next. Just install it along with your WooCommerce plugin, and it will stop
+you breaking your products with dozens of variations. Christmas may get in the way first ;-)
