@@ -75,7 +75,11 @@ be found with a simple PHP function like this:
 That runs on the server and provides the server settings to insert into the JavaScript
 initialisation, and will return 1000 by default on most PHP servers.
 
+## Demo
+
 A simple demo (index.php in this project) is running here: [http://www.acadweb.co.uk/maxsubmit/]
+
+## Future Development
 
 The jQuery plugin and the PHP function are the two building blocks. I intend to wrap them into a
 simple WordPress plugin next. Just install it along with your WooCommerce plugin, and it will stop
