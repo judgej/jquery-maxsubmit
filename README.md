@@ -22,3 +22,45 @@ submit and change the settings on the server. It does this by counting how many 
 will be submitted in a form (it does this, hopefully, intellidently by taking into account
 all the form item types and selected values). The plugin is given the maximum number of
 items the server will accept when the page is generated, so it has a number to compare to.
+
+The simplest way to implement the check is to use this JavaScript in the jQuery ready()
+function:
+
+    $('form').maxSubmit({max_count: 1000});
+    
+That will trigger on all forms, and warn the user if more than 1000 values are about to
+be POSTed by the form. Additional settings allow you to modify the confirm box text,
+or replace the standard confirm box with something more ambitious, such as a jquery.ui
+dialog. You can target specific forms with different settings if you wish.
+
+The server limit (1000 in this case) needs to be passed into the script above. This can
+be found with a simple function like this:
+
+    /**
+     * Get the submission limit.
+     * Returns the lowest limit or false if no limit can be found.
+     * An alternate default can be provided if required.
+     * CHECKME: do we need to separate GET and POST limits, as they may apply
+     * to different forms. The larger number of parameters is like to only
+     * apply to POST forms, so POST is important. The REQUEST max vars is 
+     * another thing to consider, as it will be the sum of GET and POST parameters.
+     */
+    function getFormSubmissionLimit($default = false)
+    {
+        // All these ini settings will affect the number of parameters that can be
+        // processed. Check them all to find the lowest.
+        $ini = array();
+        $ini[] = ini_get('max_input_vars');
+        $ini[] = ini_get('suhosin.get.max_vars');
+        $ini[] = ini_get('suhosin.post.max_vars');
+        $ini[] = ini_get('suhosin.request.max_vars');
+
+        $ini = array_filter($ini, 'is_numeric');
+
+        $lowest_limit = min($ini);
+
+        return ($lowest_limit === false ? $default : $lowest_limit);
+    }
+
+That runs on the server and provides the server settings to insert into the JavaScript
+initialisation, and will return 1000 by default on most PHP servers.
