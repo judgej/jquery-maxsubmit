@@ -70,10 +70,14 @@
         $ini[] = ini_get('suhosin.post.max_vars');
         $ini[] = ini_get('suhosin.request.max_vars');
 
+        // Filter out any non-numeric settings.
         $ini = array_filter($ini, 'is_numeric');
 
+        // Find the smallest of all the limits.
         $lowest_limit = min($ini);
 
+        // If none of the limits were set, then fall back the resulting false to
+        // the required default.
         return ($lowest_limit === false ? $default : $lowest_limit);
     }
 ?>
