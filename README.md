@@ -64,3 +64,5 @@ be found with a simple function like this:
 
 That runs on the server and provides the server settings to insert into the JavaScript
 initialisation, and will return 1000 by default on most PHP servers.
+
+A simnple demo (index.php in this project) is running here: [http://www.acadweb.co.uk/maxsubmit/]
