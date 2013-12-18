@@ -3,6 +3,8 @@ jquery-maxsubmit
 
 jQuery plugin to detect if too many form items will be submitte for the server to cope with.
 
+## Introduction
+
 Some appications, such as ecommerce sites, can have administration forms that submit well
 over a thousand parameters. PHP, by default, is set to accept only one thousand parameters
 and so some of the submitted data can get lost.
@@ -16,12 +18,18 @@ Luckily the maximum number of accepted parameters can be changed in php.ini The 
 many site owners have no idea this needs to be done until it is too late and their
 WooCommerce store has lost half its product variations.
 
+## Plugin Purpose
+
 What this jQuery plugin attempts to do, is warn the site administrator before a form is
 submitted, on the client (browser) side, and give the administrator a chance to cancel the
 submit and change the settings on the server. It does this by counting how many items
 will be submitted in a form (it does this, hopefully, intellidently by taking into account
 all the form item types and selected values). The plugin is given the maximum number of
 items the server will accept when the page is generated, so it has a number to compare to.
+
+## Implementation
+
+### Client-side JavaScript
 
 The simplest way to implement the check is to use this JavaScript in the jQuery ready()
 function:
@@ -32,6 +40,8 @@ That will trigger on all forms, and warn the user if more than 1000 values are a
 be POSTed by the form. Additional settings allow you to modify the confirm box text,
 or replace the standard confirm box with something more ambitious, such as a jquery.ui
 dialog. You can target specific forms with different settings if you wish.
+
+### Server-side Code
 
 The server limit (1000 in this case) needs to be passed into the script above. This can
 be found with a simple PHP function like this:
@@ -65,7 +75,7 @@ be found with a simple PHP function like this:
 That runs on the server and provides the server settings to insert into the JavaScript
 initialisation, and will return 1000 by default on most PHP servers.
 
-A simnple demo (index.php in this project) is running here: [http://www.acadweb.co.uk/maxsubmit/]
+A simple demo (index.php in this project) is running here: [http://www.acadweb.co.uk/maxsubmit/]
 
 The jQuery plugin and the PHP function are the two building blocks. I intend to wrap them into a
 simple WordPress plugin next. Just install it along with your WooCommerce plugin, and it will stop
