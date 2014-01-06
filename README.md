@@ -83,4 +83,4 @@ A simple demo (index.php in this project) is running here: [http://www.acadweb.c
 
 The jQuery plugin and the PHP function are the two building blocks. I intend to wrap them into a
 simple WordPress plugin next. Just install it along with your WooCommerce plugin, and it will stop
-you breaking your products with dozens of variations. Christmas may get in the way first ;-)
+you breaking your products that have dozens of variations. Christmas may get in the way first ;-)
