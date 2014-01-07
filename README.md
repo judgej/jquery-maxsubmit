@@ -14,7 +14,8 @@ easily and silently. A WooCommerce product with 40 variations can have over 1300
 form items, and when saving the product you have no idea that much of that data is being
 discarded.
 
-Luckily the maximum number of accepted parameters can be changed in php.ini The problem is,
+Luckily [the maximum number of accepted parameters can be changed in php.ini](http://docs.woothemes.com/document/problems-with-large-amounts-of-data-not-saving-variations-rates-etc/)
+The problem is,
 many site owners have no idea this needs to be done until it is too late and their
 WooCommerce store has lost half its product variations.
 
@@ -31,7 +32,7 @@ items the server will accept when the page is generated, so it has a number to c
 
 ### Client-side JavaScript
 
-The simplest way to implement the check is to use this JavaScript in the jQuery ready()
+The simplest way to implement the check is to use this JavaScript in your jQuery ready()
 function:
 
     $('form').maxSubmit({max_count: 1000});
@@ -43,8 +44,8 @@ dialog. You can target specific forms with different settings if you wish.
 
 ### Server-side Code
 
-The server limit (1000 in this case) needs to be passed into the script above. This can
-be found with a simple PHP function like this:
+The server limit (1000 in the above example) needs to be calculated dynamically on the
+server. It can be found with a simple PHP function like this:
 
     /**
      * Get the submission limit.
@@ -55,7 +56,7 @@ be found with a simple PHP function like this:
      * apply to POST forms, so POST is important. The REQUEST max vars is 
      * another thing to consider, as it will be the sum of GET and POST parameters.
      */
-    function getFormSubmissionLimit($default = false)
+    /* public */ function getFormSubmissionLimit($default = false)
     {
         // All these ini settings will affect the number of parameters that can be
         // processed. Check them all to find the lowest.
@@ -65,8 +66,10 @@ be found with a simple PHP function like this:
         $ini[] = ini_get('suhosin.post.max_vars');
         $ini[] = ini_get('suhosin.request.max_vars');
 
+        // Strip out the blanks - ini options not set.
         $ini = array_filter($ini, 'is_numeric');
 
+        // Find the smallest of them all.
         $lowest_limit = min($ini);
 
         return ($lowest_limit === false ? $default : $lowest_limit);
