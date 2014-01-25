@@ -16,8 +16,6 @@
  * parameters (looking at you WooCommerce). This aims to provide some
  * level of protection.
  *
- * TODO: we should look at GET variables on the form URL, because they also
- * get counted on the "suhosin.request.max_vars" setting, if used.
  */
 
 (function($) {
