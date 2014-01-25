@@ -7,7 +7,7 @@
 "max_input_vars",
 "suhosin.request.max_vars"
 ],
-"version": "1.0.0",
+"version": "1.0.1",
 "author": {
 "name": "Jason Judge",
 "url": "https://github.com/judgej"
