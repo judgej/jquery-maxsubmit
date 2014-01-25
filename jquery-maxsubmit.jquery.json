@@ -1,13 +1,13 @@
 {
-"name": "jquery.maxsubmit",
+"name": "jquery-maxsubmit",
 "title": "jQuery Maxsubmit",
 "description": "jQuery plugin To catch forms with too many POST variables for the server, saving lost data.",
 "keywords": [
 "post",
-"max_input_vars",
-"suhosin.request.max_vars"
+"maxinputvars",
+"suhosin"
 ],
-"version": "1.0.1",
+"version": "1.0.2",
 "author": {
 "name": "Jason Judge",
 "url": "https://github.com/judgej"
