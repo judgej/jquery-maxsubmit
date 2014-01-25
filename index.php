@@ -85,6 +85,13 @@
 <body>
     <h1>Max Submit</h1>
 
+    <?php if (!empty($_POST)) : ?>
+    <p style="border-radius: 4px; border: 2px solid #ff3333; padding: 1em; background-color: #fdeaaa">
+        Thank you for posting some stuff!
+        On a real application you may have lost some data by doing so.
+    </p>
+    <?php endif; ?>
+
     <p>
         The real server form submission parameter limit is <?php echo getFormSubmissionLimit('{not defined}'); ?>.
         For these tests, we will set the limit to 2, so the confirm message is always shown.
