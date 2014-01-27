@@ -89,3 +89,8 @@ https://github.com/academe/wp-max-submit-protect
 Just install the plugin (binary zips are available under the releases) and it will protect
 all admin forms from being submitted if the server will not accept the number of form items
 being POSTed.
+
+## jQuery Plugins
+
+The latest version is available here:
+http://plugins.jquery.com/jquery-maxsubmit/
