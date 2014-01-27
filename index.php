@@ -9,6 +9,8 @@
 
     <script type="text/javascript" src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
     <script type="text/javascript" src="jquery.maxsubmit.js"></script>
+
+    <!-- Here the application could pass in a translated message suitable for the language of the end user -->
     <script type="text/javascript">
         jQuery(document).ready(function($) {
             $('form#form1').maxSubmit({
@@ -19,18 +21,36 @@
             });
         });
     </script>
+
+    <!-- Some fancy stuff for the demo -->
+    <script type="text/javascript">
+        jQuery(document).ready(function($) {
+            /* Toggle the enabled state on some form items */
+            $('.text_label, .radio_label, .select_label').click(function() {
+                return $(this).siblings('input, select, textarea').each(function(){
+                    this.disabled = !this.disabled;
+                });
+            });
+        });
+    </script>
+
+    <style type="text/css">
+        .text_label, .radio_label, .select_label, .doc_label {cursor: pointer; border-bottom: green dotted 1px;}
+    </style>
 </head>
 
 <?php
+    // Read any submitted data to go back into the form.
     $input = array(
         'text1' => 'Text 1',
         'text2' => 'Text 2',
+        'textarea1' => "A nice\nstory.",
         'checkbox1' => 'on',
         'checkbox2' => '',
     );
 
     foreach($input as $key => $value) {
-        $input[$key] = (isset($_POST[$key]) ? $_POST[$key] : '' );
+        $input[$key] = (isset($_POST[$key]) ? htmlspecialchars($_POST[$key]) : $input[$key] );
     }
 
     $input = array_merge(
@@ -88,7 +108,7 @@
     <?php if (!empty($_POST)) : ?>
     <p style="border-radius: 4px; border: 2px solid #ff3333; padding: 1em; background-color: #fdeaaa">
         Thank you for posting some stuff!
-        On a real application you may have lost some data by doing so.
+        On a real application you may have lost some data by ignoring the warning.
     </p>
     <?php endif; ?>
 
@@ -97,35 +117,48 @@
         For these tests, we will set the limit to 2, so the confirm message is always shown.
     </p>
 
+    <p>
+        Clicking the labels of <span class="doc_label">the form items like this</span> will disable those items, so they are not submitted.
+    </p>
+
     <form method="post" id="form1">
         <h2>Mandatory form items: will count as one submitted parameter each</h2>
 
         <p>
             <input type="text" name="text1" value="<?php echo $input['text1']; ?>" />
+            <span class="text_label" title="Click to toggle toggle the enabled state">(counts as one parameter)</span>
         </p>
 
         <p>
             <input type="text" name="text2" value="<?php echo $input['text2']; ?>" />
+            <span class="text_label" title="Click to toggle toggle the enabled state">(counts as one parameter)</span>
+        </p>
+
+        <p>
+            <textarea rows="3" cols="15" name="textarea1"><?php echo $input['textarea1']; ?></textarea>
+            <span class="text_label" title="Click to toggle toggle the enabled state">(counts as one parameter)</span>
         </p>
 
         <p>
             <select name="select2">
                 <option value="value1">Value 1</option>
+                <option value="value2">Value 2</option>
             </select>
+            <span class="select_label" title="Click to toggle toggle the enabled state">(counts as one parameter)</span>
         </p>
 
         <p>
             <input type="radio" name="radio1" value="value1" checked />
             <input type="radio" name="radio1" value="value2" />
             <input type="radio" name="radio1" value="value3" />
-            Radio 1
+            <span class="radio_label" title="Click to toggle toggle the enabled state">Radio 1</apan>
         </p>
 
         <p>
             <input type="radio" name="radio2" value="value1" checked />
             <input type="radio" name="radio2" value="value2" />
             <input type="radio" name="radio2" value="value3" />
-            Radio 2
+            <span class="radio_label" title="Click to toggle toggle the enabled state">Radio 2</apan>
         </p>
 
         <hr />
@@ -145,7 +178,8 @@
                 <?php foreach($input['select1'] as $key => $value) { ?>
                     <option value="<?php echo "$key"; ?>" <?php echo ($value ? "selected='selected'" : "") ?>><?php echo $key; ?></option>
                 <?php } ?>
-            </select> (counts as up to three parameters)
+            </select>
+            <span class="select_label" title="Click to toggle toggle the enabled state">(counts as up to three parameters)</span>
         </p>
 
         <p>
