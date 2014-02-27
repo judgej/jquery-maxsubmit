@@ -1,6 +1,7 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
     <title>jquery-maxsubmit plugin demo</title>
     <meta name="Generator" content="EditPlus">
     <meta name="Author" content="Jason Judge">
@@ -44,6 +45,8 @@
     $input = array(
         'text1' => 'Text 1',
         'text2' => 'Text 2',
+        'text3' => '',
+        'text4' => '',
         'textarea1' => "A nice\nstory.",
         'checkbox1' => 'on',
         'checkbox2' => '',
@@ -126,12 +129,27 @@
 
         <p>
             <input type="text" name="text1" value="<?php echo $input['text1']; ?>" />
-            <span class="text_label" title="Click to toggle toggle the enabled state">(counts as one parameter)</span>
+            <span class="text_label" title="Click to toggle toggle the enabled state">(text counts as one parameter)</span>
         </p>
 
         <p>
             <input type="text" name="text2" value="<?php echo $input['text2']; ?>" />
-            <span class="text_label" title="Click to toggle toggle the enabled state">(counts as one parameter)</span>
+            <span class="text_label" title="Click to toggle toggle the enabled state">(text counts as one parameter)</span>
+        </p>
+
+        <p>
+            <input type="email" name="text3" value="<?php echo $input['text3']; ?>" />
+            <span class="text_label" title="Click to toggle toggle the enabled state">(email counts as one parameter)</span>
+        </p>
+
+        <p>
+            <input type="date" name="text4" value="<?php echo $input['text4']; ?>" />
+            <span class="text_label" title="Click to toggle toggle the enabled state">(date counts as one parameter)</span>
+        </p>
+
+        <p>
+            <input type="hidden" value="hidden" />[hidden]
+            <span class="text_label" title="Click to toggle toggle the enabled state">(hidden field counts as one parameter)</span>
         </p>
 
         <p>
