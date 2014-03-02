@@ -10,16 +10,21 @@
 
     <script type="text/javascript" src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
     <script type="text/javascript" src="jquery.maxsubmit.js"></script>
+    <script type="text/javascript" src="jquery.maxsubmittest.js"></script>
 
     <!-- Here the application could pass in a translated message suitable for the language of the end user -->
     <script type="text/javascript">
         jQuery(document).ready(function($) {
+            // Protect the form.
             $('form#form1').maxSubmit({
                 max_count: 2,
                 max_exceeded_message: "This form has too many fields.\n\n"
                     + " Found {form_count} fields, so with a maximum of {max_count} supported by the server, some data will be lost.\n\n"
                     + " You may continue and submit, or cancel."
             });
+
+            // Allow inspection of what will be submitted (test the form).
+            jQuery('.test-maxsubmit').maxSubmitTest();
         });
     </script>
 
@@ -37,6 +42,9 @@
 
     <style type="text/css">
         .text_label, .radio_label, .select_label, .doc_label {cursor: pointer; border-bottom: green dotted 1px;}
+        .test-maxsubmit a {cursor: pointer; border: 2px solid #ffaaaa; padding: 3px;}
+        table {border: 1px solid #000000; border-collapse:collapse;}
+        table td, table th {border: 1px solid #666666; margin: 0; padding: 3px;}
     </style>
 </head>
 
@@ -127,6 +135,12 @@
     <form method="post" id="form1">
         <h2>Mandatory form items: will count as one submitted parameter each</h2>
 
+        <div class="test-maxsubmit">
+            <p>
+                <a>Click here to see what the form will submit</a>
+            <p>
+        </div>
+
         <p>
             <input type="text" name="text1" value="<?php echo $input['text1']; ?>" />
             <span class="text_label" title="Click to toggle toggle the enabled state">(text counts as one parameter)</span>
@@ -201,7 +215,7 @@
         </p>
 
         <p>
-            <input type="submit" value="Submit" /> (also a mandatory submitted parameter)
+            <input type="submit" value="Submit" name="submit" /> (also a mandatory submitted parameter)
         </p>
     </form>
 </body>
