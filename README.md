@@ -97,6 +97,7 @@ http://plugins.jquery.com/jquery-maxsubmit/
 
 ## History
 
+1.2.0 Bumped up version as interface has been extended  
 1.1.4 Rewrite to support testing; listing of the items that will be submitted  
 1.1.3 Fixed count of HTML5 input elements  
 1.1.2 Updated metadata for plugins.jquery.com  
