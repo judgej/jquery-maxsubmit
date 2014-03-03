@@ -2,7 +2,7 @@
  * Copyright 2013-2014 Academe Computing Ltd
  * Released under the MIT license
  * Author: Jason Judge <jason@academe.co.uk>
- * Version: 1.2.1
+ * Version: 1.2.2
  */
 /**
  * jquery.maxsubmit.js
