@@ -97,6 +97,7 @@ http://plugins.jquery.com/jquery-maxsubmit/
 
 ## History
 
+1.2.2 Bumped minor version for plugins.jquery.com
 1.2.1 Correction to download link in metadata  
 1.2.0 Bumped up version as interface has been extended  
 1.1.4 Rewrite to support testing; listing of the items that will be submitted  
